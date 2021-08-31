@@ -1,0 +1,10 @@
+checklist {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+label input{
+    margin: 0 5px;
+}
+label {
+    color: rgb(84,85,83);
+}

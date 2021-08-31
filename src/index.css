@@ -1,0 +1,15 @@
+.map-container {
+    height: 100vh;
+
+  }
+body{
+    background-color: rgb(238,238,237);
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+}
+  
+.root {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    
+}
