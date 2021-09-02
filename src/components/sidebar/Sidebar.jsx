@@ -1,6 +1,6 @@
 import React from 'react';
-import Region from './sidebar/Region';
-import Period from './sidebar/Period';
+import Region from './Region';
+import Period from './Period';
 import './Sidebar.css';
 
 export default function Sidebar() {

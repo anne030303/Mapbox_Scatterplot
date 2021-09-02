@@ -1,6 +1,7 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Slider from '@material-ui/core/Slider';
+import { useSelector, useDispatch } from 'react-redux';
 
 
 const CustomSlider = withStyles({
@@ -49,7 +50,7 @@ const CustomSlider = withStyles({
     },
 })(Slider);
 
-function percent2Time(value) {
+function percent2TimeString(value) {
     let hour_value = Math.floor((value * 1440 / 100) / 60);
     let minute_value = Math.round(Math.round((value * 1440 / 100) % 60) / 10) * 10;
     if (minute_value === 60) {
@@ -66,18 +67,36 @@ function CustomThumbComponent(props) {
             <span className="bar" />
             <span className="bar" />
             <span className="bar" />
-            <span className="label">{percent2Time(props['aria-valuenow'])}</span>
+            <span className="label">{percent2TimeString(props['aria-valuenow'])}</span>
         </span>
 
     );
 }
 
-export default function Period() {
-    const [value, setValue] = React.useState([29, 87.5]);
+function Time2Percent(props) {
+    var newValue = props.map((num) => {
+        return num * 100 / 86399
+    })
+    return newValue
+}
+function percent2Time(props) {
+    var newValue = props.map((num) => {
+        return num * 86399 / 100
+    })
+    return newValue
+}
 
+export default function Period() {
+    const value = (useSelector(state => state.valueOfPeriod));
+    const dispatch = useDispatch();
     const handleChange = (event, newValue) => {
-        setValue(newValue);
+        dispatch({
+            type: 'ADJUSTPERIOD',
+            value: percent2Time(newValue)
+        });
     };
+
+
 
     return (
         <div>
@@ -86,7 +105,7 @@ export default function Period() {
                 onChange={handleChange}
                 ThumbComponent={CustomThumbComponent}
                 getAriaLabel={(index) => (index === 0 ? 'Minimum' : 'Maximum')}
-                value={value}
+                value={Time2Percent(value)}
             />
         </div>
     )

@@ -3,6 +3,7 @@ import './Region.css'
 import Checkbox from '@material-ui/core/Checkbox';
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
+import { useSelector, useDispatch } from 'react-redux';
 
 const useStyles = makeStyles({
     root: {
@@ -48,56 +49,38 @@ const useStyles = makeStyles({
     },
 });
 
-function StyledCheckbox(props) {
-    const classes = useStyles();
 
-    return (
-        <Checkbox
-            className={classes.root}
-            disableRipple
-            color="default"
-            checkedIcon={<span className={clsx(classes.icon, classes.checkedIcon)} />}
-            icon={<span className={classes.icon} />}
-            inputProps={{ 'aria-label': 'decorative checkbox' }}
-            {...props}
-        />
-    );
-}
 
 export default function Region() {
-    const [checked, setChecked] = React.useState(true);
-    const handleChange = (event) => {
-        setChecked(event.target.checked);
+    const countries = (useSelector(state => state.countries));
+    const classes = useStyles();
+    const dispatch = useDispatch();
+    const handleChecked = (id, checked) => {
+        dispatch({
+            type: 'CHECKEDCOUNTRY',
+            id: id
+        });
     };
+
     return (
         <div>
             <h3>Country/Region</h3>
             <div className="checklist">
-
-                <label>
-                    <StyledCheckbox />
-                    Taiwan
-                </label>
-                <label>
-                    <StyledCheckbox />
-                    China
-                </label>
-                <label>
-                    <StyledCheckbox />
-                    Hong Kong
-                </label>
-                <label>
-                    <StyledCheckbox />
-                    Japan
-                </label>
-                <label>
-                    <StyledCheckbox />
-                    Korean
-                </label>
-                <label>
-                    <StyledCheckbox />
-                    Others
-                </label>
+                {countries.map((item) => (
+                    <label key={item.id}>
+                        <Checkbox
+                            checked={item.checked}
+                            className={classes.root}
+                            onChange={() => handleChecked(item.id, item.checked)}
+                            disableRipple
+                            color="default"
+                            checkedIcon={<span className={clsx(classes.icon, classes.checkedIcon)} />}
+                            icon={<span className={classes.icon} />}
+                            inputProps={{ 'aria-label': 'decorative checkbox' }}
+                        />
+                        {item['country/region']}
+                    </label>
+                ))}
             </div>
         </div>
     )

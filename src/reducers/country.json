@@ -1,0 +1,38 @@
+[
+    {
+        "id": 0,
+        "country/region": "Taiwan",
+        "color": "#ef7c1e",
+        "checked": true
+    },
+    {
+        "id": 1,
+        "country/region": "China",
+        "color": "#1a6fa8",
+        "checked": true
+    },
+    {
+        "id": 2,
+        "country/region": "Hong Kong",
+        "color": "#339839",
+        "checked": true
+    },
+    {
+        "id": 3,
+        "country/region": "Japan",
+        "color": "#ca2728",
+        "checked": true
+    },
+    {
+        "id": 4,
+        "country/region": "Korean",
+        "color": "#895549",
+        "checked": true
+    },
+    {
+        "id": 5,
+        "country/region": "Others",
+        "color": "#8c8e90",
+        "checked": true
+    }
+]
