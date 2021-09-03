@@ -128,10 +128,10 @@ export default function App() {
             popup.setLngLat(coordinates).setHTML(description).addTo(map.current);
         });
 
-        // map.current.on('mouseleave', 'point', () => {
-        //     map.current.getCanvas().style.cursor = '';
-        //     popup.remove();
-        // });
+        map.current.on('mouseleave', 'point', () => {
+            map.current.getCanvas().style.cursor = '';
+            popup.remove();
+        });
 
         map.current.on('move', () => {
             setLng(map.current.getCenter().lng.toFixed(4));
