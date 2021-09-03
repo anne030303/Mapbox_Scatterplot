@@ -73,7 +73,7 @@ function CustomThumbComponent(props) {
     );
 }
 
-function Time2Percent(props) {
+function time2Percent(props) {
     var newValue = props.map((num) => {
         return num * 100 / 86399
     })
@@ -105,7 +105,7 @@ export default function Period() {
                 onChange={handleChange}
                 ThumbComponent={CustomThumbComponent}
                 getAriaLabel={(index) => (index === 0 ? 'Minimum' : 'Maximum')}
-                value={Time2Percent(value)}
+                value={time2Percent(value)}
             />
         </div>
     )

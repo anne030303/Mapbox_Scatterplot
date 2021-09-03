@@ -1,0 +1,26 @@
+.popup .mapboxgl-popup-content {
+    background-color: black;
+    padding: 20px;
+    width: 350px;
+    font-size: 1rem;
+    font-family: 'Roboto', sans-serif;
+    color:white;
+  }
+
+.popup .mapboxgl-popup-tip {
+    border-top-color: black;
+  }
+
+  .popup .mapboxgl-popup-content div {
+      padding: 3px;
+  }
+
+.popup .dot{
+  height: 8px;
+  width: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  margin: 0 5px 0 0;
+  border-color: white;
+  border: 3px solid white;
+}
