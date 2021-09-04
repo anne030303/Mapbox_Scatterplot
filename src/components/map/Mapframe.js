@@ -39,18 +39,6 @@ export default function App() {
             center: [lng, lat],
             zoom: zoom
         });
-        // const geojson = [];
-        // sampleData.forEach(element => {
-        //     geojson.push(JSON.parse('{"type": "Feature", ' +
-        //         '"properties": {' +
-        //         ' "imei": "' + element.imei +
-        //         '", "homeCountry": "' + element.homeCountry +
-        //         '", "unixTimestamp": ' + element.unixTimestamp +
-        //         ', "time": ' + unixTimestamp2time(element.unixTimestamp) +
-        //         ', "city": "' + element.city + '"' +
-        //         '},' +
-        //         '"geometry":{"type":"Point", "coordinates":[' + element.lon + ',' + element.lat + ']}}'));
-        // });
 
         map.current.on('load', () => {
             map.current.addSource("points", {
