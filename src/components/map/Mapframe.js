@@ -72,7 +72,8 @@ export default function App() {
         });
         const popup = new mapboxgl.Popup({
             className: "popup",
-            closeButton: false
+            closeButton: false,
+            maxWidth: "380px"
         });
 
         map.current.on('mouseenter', 'point', (e) => {
@@ -92,10 +93,10 @@ export default function App() {
             popup.setLngLat(coordinates).setHTML(description).addTo(map.current);
         });
 
-        // map.current.on('mouseleave', 'point', () => {
-        //     map.current.getCanvas().style.cursor = '';
-        //     popup.remove();
-        // });
+        map.current.on('mouseleave', 'point', () => {
+            map.current.getCanvas().style.cursor = '';
+            popup.remove();
+        });
 
         map.current.on('move', () => {
             setLng(map.current.getCenter().lng.toFixed(4));
