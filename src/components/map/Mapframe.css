@@ -5,10 +5,24 @@
     font-size: 1rem;
     font-family: 'Roboto', sans-serif;
     color:white;
+    border-color: black;
+    border-width: 1px;
   }
 
-.popup .mapboxgl-popup-tip {
+  .mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip {
     border-top-color: black;
+  }
+
+  .mapboxgl-popup-anchor-top .mapboxgl-popup-tip{
+    border-bottom-color: black;
+  }
+
+  .mapboxgl-popup-anchor-left .mapboxgl-popup-tip{
+    border-right-color: black;
+  }
+
+  .mapboxgl-popup-anchor-right .mapboxgl-popup-tip{
+    border-left-color: black;
   }
 
 .popup .mapboxgl-popup-content div {
