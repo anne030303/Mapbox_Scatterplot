@@ -32,14 +32,15 @@ export default function App() {
     }, [countries, valueOfPeriod]);
 
     useEffect(() => {
-        if (map.current) return; // initialize map only once
+        // initialize map only once
+        if (map.current) return;
         map.current = new mapboxgl.Map({
             container: mapContainer.current,
             style: 'mapbox://styles/mapbox/light-v10',
             center: [lng, lat],
             zoom: zoom
         });
-
+        // add json data layer
         map.current.on('load', () => {
             map.current.addSource("points", {
                 "type": "geojson",
@@ -48,11 +49,13 @@ export default function App() {
                     "features": geojson
                 }
             });
+            // set different colors according to homeCountry
             const matchExpression = ['match', ['get', 'homeCountry']];
             countries.forEach(country => {
                 matchExpression.push(country["country/region"], country.color);
             });
             matchExpression.push('rgba(0, 0, 0, 0)');
+
             map.current.addLayer({
                 "id": "point",
                 "type": "circle",
@@ -67,15 +70,14 @@ export default function App() {
                     ['>', 'time', valueOfPeriod[0]],
                     ['<', 'time', valueOfPeriod[1]]]
             });
-            // })
-
         });
+        // add popup
         const popup = new mapboxgl.Popup({
             className: "popup",
             closeButton: false,
             maxWidth: "380px"
         });
-
+        // add popup if mouse enter to a feature
         map.current.on('mouseenter', 'point', (e) => {
             map.current.getCanvas().style.cursor = 'pointer';
 
@@ -92,17 +94,17 @@ export default function App() {
 
             popup.setLngLat(coordinates).setHTML(description).addTo(map.current);
         });
-
+        // remove popup if mouse leave a feature
         map.current.on('mouseleave', 'point', () => {
             map.current.getCanvas().style.cursor = '';
             popup.remove();
         });
-
-        map.current.on('move', () => {
-            setLng(map.current.getCenter().lng.toFixed(4));
-            setLat(map.current.getCenter().lat.toFixed(4));
-            setZoom(map.current.getZoom().toFixed(2));
-        });
+        // renew the map's location and zoom when the map is moved
+        // map.current.on('move', () => {
+        //     setLng(map.current.getCenter().lng.toFixed(4));
+        //     setLat(map.current.getCenter().lat.toFixed(4));
+        //     setZoom(map.current.getZoom().toFixed(2));
+        // });
     });
 
     return (

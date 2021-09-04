@@ -1,3 +1,4 @@
+// record only time
 export function unixTimestamp2time(timestamp) {
     let date = new Date(timestamp * 1000);
     let hours = date.getHours();
@@ -5,7 +6,7 @@ export function unixTimestamp2time(timestamp) {
     let seconds = date.getSeconds();
     return (hours * 3600 + minutes * 60 + seconds)
 }
-
+// time string for popup's description
 export function unixTimestamp2timestring(timestamp) {
     let date = new Date(timestamp * 1000);
     let year = date.getFullYear();
@@ -17,6 +18,7 @@ export function unixTimestamp2timestring(timestamp) {
     return (year + '-' + String(month).padStart(2, "0") + '-' + String(day).padStart(2, "0") + ' ' + String(hours).padStart(2, "0") + ':' + String(minutes).padStart(2, "0"))
 }
 
+// time string for slider's label
 export function percent2TimeString(value) {
     let hours = Math.floor((value * 1440 / 100) / 60);
     let minutes = Math.round(Math.round((value * 1440 / 100) % 60) / 10) * 10;
@@ -28,6 +30,7 @@ export function percent2TimeString(value) {
     return newValue
 }
 
+// for slider bar
 export function time2Percent(props) {
     var newValue = props.map((num) => {
         return num * 100 / 86399

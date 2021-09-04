@@ -1,6 +1,8 @@
 import sampleData from '../../sampleData.json';
 import { unixTimestamp2time } from '../helpers/helpers';
 
+// create geojson by json file
+
 const geojson = [];
 const validItems = ['imei', 'homeCountry', 'unixTimestamp', 'city', 'lon', 'lat']
 sampleData.forEach(element => {

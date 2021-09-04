@@ -14,7 +14,7 @@ const country = (state = {}, action) => {
             return state
     }
 }
-
+// record country/region is checked or not
 const countries = (state = countryInitial, action) => {
     switch (action.type) {
         case 'CHECKEDCOUNTRY':
@@ -24,7 +24,7 @@ const countries = (state = countryInitial, action) => {
             return state
     }
 }
-
+// record the period user want to view
 const valueOfPeriod = (state = [25200, 75600], action) => {
     switch (action.type) {
         case 'ADJUSTPERIOD':

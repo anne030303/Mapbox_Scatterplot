@@ -3,7 +3,7 @@ import CustomSlider from './PeriodStyle';
 import { useSelector, useDispatch } from 'react-redux';
 import { percent2TimeString, time2Percent, percent2Time } from '../helpers/helpers';
 
-
+// set the custom slider thumb content
 function CustomThumbComponent(props) {
     return (
         <span {...props}>
