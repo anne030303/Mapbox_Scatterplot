@@ -55,7 +55,6 @@ export default function App() {
             matchExpression.push('rgba(0, 0, 0, 0)');
             map.current.addLayer({
                 "id": "point",
-                //  + country.id,
                 "type": "circle",
                 "source": "points",
                 "paint": {
