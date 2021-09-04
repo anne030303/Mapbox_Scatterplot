@@ -11,7 +11,7 @@
     border-top-color: black;
   }
 
-  .popup .mapboxgl-popup-content div {
+.popup .mapboxgl-popup-content div {
       padding: 3px;
   }
 

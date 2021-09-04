@@ -1,30 +1,13 @@
 import React, { useRef, useEffect, useState } from 'react';
 import './Mapframe.css';
 import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
-import sampleData from '../../sampleData.json';
+import geojsondata from './GeoJSON';
 import { useSelector } from 'react-redux';
-
+import { unixTimestamp2timestring } from '../helpers/helpers';
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_Accesstokens;
 
-function unixTimestamp2time(timestamp) {
-    let date = new Date(timestamp * 1000);
-    let hours = date.getHours();
-    let minutes = date.getMinutes();
-    let seconds = date.getSeconds();
-    return (hours * 3600 + minutes * 60 + seconds)
-}
 
-function unixTimestamp2timestring(timestamp) {
-    let date = new Date(timestamp * 1000);
-    let year = date.getFullYear();
-    let month = date.getMonth();
-    let day = date.getDate();
-    let hours = date.getHours();
-    let minutes = date.getMinutes();
-
-    return (year + '-' + String(month).padStart(2, "0") + '-' + String(day).padStart(2, "0") + ' ' + String(hours).padStart(2, "0") + ':' + String(minutes).padStart(2, "0"))
-}
 
 export default function App() {
     const countries = (useSelector(state => state.countries));
@@ -34,6 +17,7 @@ export default function App() {
     const [lng, setLng] = useState(139.5416);
     const [lat, setLat] = useState(35.7107);
     const [zoom, setZoom] = useState(10);
+    const geojson = geojsondata;
 
     useEffect(() => {
         if (!map.current) return;
@@ -55,18 +39,18 @@ export default function App() {
             center: [lng, lat],
             zoom: zoom
         });
-        const geojson = [];
-        sampleData.forEach(element => {
-            geojson.push(JSON.parse('{"type": "Feature", ' +
-                '"properties": {' +
-                ' "imei": "' + element.imei +
-                '", "homeCountry": "' + element.homeCountry +
-                '", "unixTimestamp": ' + element.unixTimestamp +
-                ', "time": ' + unixTimestamp2time(element.unixTimestamp) +
-                ', "city": "' + element.city + '"' +
-                '},' +
-                '"geometry":{"type":"Point", "coordinates":[' + element.lon + ',' + element.lat + ']}}'));
-        });
+        // const geojson = [];
+        // sampleData.forEach(element => {
+        //     geojson.push(JSON.parse('{"type": "Feature", ' +
+        //         '"properties": {' +
+        //         ' "imei": "' + element.imei +
+        //         '", "homeCountry": "' + element.homeCountry +
+        //         '", "unixTimestamp": ' + element.unixTimestamp +
+        //         ', "time": ' + unixTimestamp2time(element.unixTimestamp) +
+        //         ', "city": "' + element.city + '"' +
+        //         '},' +
+        //         '"geometry":{"type":"Point", "coordinates":[' + element.lon + ',' + element.lat + ']}}'));
+        // });
 
         map.current.on('load', () => {
             map.current.addSource("points", {
