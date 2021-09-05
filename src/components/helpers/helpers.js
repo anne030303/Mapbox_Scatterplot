@@ -1,21 +1,16 @@
+import moment from "moment"
+
 // record only time
 export function unixTimestamp2time(timestamp) {
-    let date = new Date(timestamp * 1000);
-    let hours = date.getHours();
-    let minutes = date.getMinutes();
-    let seconds = date.getSeconds();
+    let date = moment.unix(timestamp).utcOffset('+0900');
+    let hours = date.hour();
+    let minutes = date.minutes();
+    let seconds = date.seconds();
     return (hours * 3600 + minutes * 60 + seconds)
 }
 // time string for popup's description
 export function unixTimestamp2timestring(timestamp) {
-    let date = new Date(timestamp * 1000);
-    let year = date.getFullYear();
-    let month = date.getMonth();
-    let day = date.getDate();
-    let hours = date.getHours();
-    let minutes = date.getMinutes();
-
-    return (year + '-' + String(month).padStart(2, "0") + '-' + String(day).padStart(2, "0") + ' ' + String(hours).padStart(2, "0") + ':' + String(minutes).padStart(2, "0"))
+    return moment.unix(timestamp).utcOffset('+0900').format("YYYY-MM-DD HH:mm");;
 }
 
 // time string for slider's label
